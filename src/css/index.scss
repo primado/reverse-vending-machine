@@ -23,8 +23,8 @@ body {
     height: 480px;
     background-color: #f1f1f1;
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    
 
 }
 
@@ -33,6 +33,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 0em;
+    margin-top: 2em;
 }
 
 .header {
@@ -69,7 +70,7 @@ body {
 
 }
 
-.main-col__top .btn-start {
+.btn-primary {
     width: 150px;
     height: 50px;
     background-color: #000;
@@ -82,31 +83,99 @@ body {
     cursor: pointer;
 }
 
+ .btn-primary:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: all 0.09s ease-in-out;
+}
 
-.center {
+ .btn-primary:active {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: all 0.09s ease-in-out;
+}
+
+.middle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin: .8em 2em;
+}
+
+.middle .middle__lt {
+    width: 50%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    flex-direction: row;
+    // border: #000 solid 1px;
 }
 
-.center .items {
+.middle__lt .item-1, .item-2{
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.center .items .item-1 {
+.middle__rt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    
+}
+
+.price-container {
+    border: #000 solid 2px;
+    width: 100%;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-direction: column;
+    border-radius: .5em;
+    margin-bottom: 1em;
+}
+
+
+.price-container .desc {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.amount span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+.cedi {
+    width: 1em;
+}
+
+
+.logo {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-}
-
-
-.cedi {
-    width: 2em;
+    flex-direction: column;
+    margin-bottom: 1em;
 }

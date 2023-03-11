@@ -34,53 +34,44 @@ function App() {
               </div>
 
               <div className='btn'>
-                <button className='btn-start' type='submit'>Start</button>
+                <button className='btn-primary' type='submit'>Start</button>
               </div>
-
             </div>
 
-            <div className="center">
-              <div className="items">
+            <div className="middle">
+              <div className="middle__lt">
                 <div className='item-1'>
-                  <img src={bottl_1} alt="first items" />
-                  <div className='bottle_1-desc'>
-                    3
-                  </div>
+                  <img src={bottl_1} alt="item 1" />
+                  <span>3</span>
                 </div>
 
-                <div className='item-1'>
-                  <img src={bottl_1} alt="second items" />
-                  <div className='bottle_1-desc'>
-                    2
-                  </div>
+                <div className="item-2">
+                  <img src={bottl_2} alt="item 2" />
+                  <span>2</span>
                 </div>
 
               </div>
 
-              <div className="price">
-                <div className="col-1">
-                  <div className='price-desc'>Price</div>
-
-                  <div className="amount">
-                    <span>
-                      <img className='cedi' src={cedi} alt="cedi" />
+              <div className="middle__rt">
+                <div className='price-container'>
+                  <span className='desc'>Price</span>
+                  <div className='amount'>
+                    <span><img className='cedi' src={cedi} alt="currency symbol" />
+                      0.01
                     </span>
-                    <span>0.01</span>
-
                   </div>
-
                 </div>
+               
 
-                <div className="col-2">
-                  <button type='submit'>
+                <div className="btn">
+                  <button className='btn-primary' type='submit'>
                     Finish
                   </button>
                 </div>
-
+                
               </div>
-
             </div>
-          
+            
           </div>
 
 
