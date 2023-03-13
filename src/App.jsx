@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import useWebSocket from 'react-use-websocket';
+import 'reactjs-popup/dist/index.css';
+import Modal from "react-modal";
+
+
 
 
 var address = import.meta.env.IP_ADDRESS;
@@ -26,7 +30,32 @@ import './css/index.css'
 
 
 function App() {
- 
+   
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
+  function handleNumberClick(number) {
+    setInputValue(inputValue + number);
+  }
+
+  function handleBackspaceClick() {
+    setInputValue(inputValue.slice(0, -1));
+  }
+
+  function handleClearClick() {
+    setInputValue("");
+  }
+
+  function handlePhoneNumberChange(event) {
+    setPhoneNumber(event.target.value);
+  }
+
+  function handleSavePhoneNumber() {
+    console.log(phoneNumber);
+    alert(phoneNumber);
+    setModalIsOpen(false);
+  }
    useWebSocket(WS_URL, {
 
     onOpen: () => {
@@ -80,7 +109,40 @@ function App() {
               </div>
 
               <div className='btn'>
-                <button className='btn-primary' type='submit'>Start</button>
+                <button className='btn-primary' type='submit' onClick={() => setModalIsOpen(true)}>Start</button>
+                <Modal isOpen={modalIsOpen}>
+                  <div>
+                    <h2>Enter Your Phone Number</h2>
+                    <input type="number" value={inputValue} onChange={handlePhoneNumberChange} />
+                    <button onClick={handleSavePhoneNumber}>Save</button>
+                    <button onClick={() => setModalIsOpen(false)}>Cancel</button>
+
+                    <div>
+      <input type="text" value={inputValue} onChange={handlePhoneNumberChange}   />
+      <div>
+        <button onClick={() => handleNumberClick("1")}>1</button>
+        <button onClick={() => handleNumberClick("2")}>2</button>
+        <button onClick={() => handleNumberClick("3")}>3</button>
+      </div>
+      <div>
+        <button onClick={() => handleNumberClick("4")}>4</button>
+        <button onClick={() => handleNumberClick("5")}>5</button>
+        <button onClick={() => handleNumberClick("6")}>6</button>
+      </div>
+      <div>
+        <button onClick={() => handleNumberClick("7")}>7</button>
+        <button onClick={() => handleNumberClick("8")}>8</button>
+        <button onClick={() => handleNumberClick("9")}>9</button>
+      </div>
+      <div>
+        <button onClick={() => handleClearClick()}>Clear</button>
+        <button onClick={() => handleNumberClick("0")}>0</button>
+        <button onClick={() => handleBackspaceClick()}>Delete</button>
+      </div>
+    </div>
+                  </div>
+                </Modal>
+                        
               </div>
             </div>
 
