@@ -9,6 +9,8 @@ var metal;
 var pet;
 var status = "";
 var metal_total=0,pet_total= 0, total_items = 0;
+var metal_total_price=0,pet_total_price= 0, total_price = 0;
+
 
 const WS_URL = 'ws://192.168.1.101:8081';
 
@@ -38,15 +40,19 @@ function App() {
           pet = data['pet']
           status = data['status']
 
-          if(metal > 0){
+          if(status === "active"){
+          if(metal > 0 && pet === 0){
             metal_total =  metal_total + 1;
+            metal_total_price = metal_total_price + 0.25;
            }
-          if(pet > 0){
+          if(pet > 0 && metal === 0){
             pet_total =  pet_total + 1;
+            pet_total_price = pet_total_price + 0.2
           }
           
           total_items = pet_total + metal_total;
-
+          total_price = pet_total_price + metal_total_price;
+        }
 
       
     },
@@ -97,7 +103,7 @@ function App() {
                   <span className='desc'>Price</span>
                   <div className='amount'>
                     <span><img className='cedi' src={cedi} alt="currency symbol" />
-                      0.01
+                      [{total_price.toFixed(2)}]
                     </span>
                   </div>
                 </div>
