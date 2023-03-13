@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const WebSocketServer = require('ws');
@@ -35,7 +37,6 @@ wss.on("connection",(socket, req) => {
           screen[s].send(message);   
               }
          });
- 
 });
 
 

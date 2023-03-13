@@ -41,17 +41,17 @@ function App() {
           status = data['status']
 
           if(status === "active"){
-          if(metal > 0 && pet === 0){
-            metal_total =  metal_total + 1;
-            metal_total_price = metal_total_price + 0.25;
-           }
-          if(pet > 0 && metal === 0){
-            pet_total =  pet_total + 1;
-            pet_total_price = pet_total_price + 0.2
-          }
-          
-          total_items = pet_total + metal_total;
-          total_price = pet_total_price + metal_total_price;
+              if(metal > 0 && pet === 0){
+                metal_total =  metal_total + 1;
+                metal_total_price = metal_total_price + 0.25;
+              }
+              if(pet > 0 && metal === 0){
+                pet_total =  pet_total + 1;
+                pet_total_price = pet_total_price + 0.2
+              }
+              
+              total_items = pet_total + metal_total;
+              total_price = pet_total_price + metal_total_price;
         }
 
       
