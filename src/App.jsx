@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import useWebSocket from 'react-use-websocket';
 
-const socket = io.connect('http://localhost:3000');
+
+var address = import.meta.env.IP_ADDRESS;
+var feedback ="";
+var metal;
+var pet;
+var status = "";
+var metal_total=0,pet_total= 0, total_items = 0;
+
+const WS_URL = 'ws://192.168.1.101:8081';
 
 
 //images
@@ -15,23 +24,44 @@ import './css/index.css'
 
 
 function App() {
-  const [counter, setCounter] = useState(0);
+ 
+   useWebSocket(WS_URL, {
 
-  useEffect(() => {
-    socket.on('button1', () => {
-      setCounter(counter + 1);
-    });
-  }, [counter]);
+    onOpen: () => {
+      console.log('WebSocket1 connection established.');
+    },
+    onMessage:(event)=>{
+      const data = JSON.parse(event.data);
+      console.log(data);
+          feedback = data['feedback'];
+          metal = data['metal'];
+          pet = data['pet']
+          status = data['status']
+
+          if(metal > 0){
+            metal_total =  metal_total + 1;
+           }
+          if(pet > 0){
+            pet_total =  pet_total + 1;
+          }
+          
+          total_items = pet_total + metal_total;
+
+
+      
+    },
+    shouldReconnect: (closeEvent) => true,
+  });
+
    
-console.log(counter);
-  return (
+   return (
     <div className="app">
       
       <div className="container">
 
         <div className='header-center'>
           <div className="header">
-            <h1>Feedback</h1>
+            <h1>{feedback}</h1>
 
           </div>
         </div>
@@ -40,7 +70,7 @@ console.log(counter);
           <div className="main-col__lt">
             <div className='main-col__top'>
               <div className="text-desc">
-                Total Bottle: {counter}
+                Total Bottle: {total_items}
               </div>
 
               <div className='btn'>
@@ -52,12 +82,12 @@ console.log(counter);
               <div className="middle__lt">
                 <div className='item-1'>
                   <img src={bottl_1} alt="item 1" />
-                  <span>3</span>
+                  <span>{metal_total}</span>
                 </div>
 
                 <div className="item-2">
                   <img src={bottl_2} alt="item 2" />
-                  <span>2</span>
+                  <span>{pet_total}</span>
                 </div>
 
               </div>

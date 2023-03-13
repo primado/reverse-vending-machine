@@ -1,7 +1,43 @@
 const express = require('express');
 const app = express();
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+const WebSocketServer = require('ws');
+dotenv.config();
+
+const address = process.env.IP_ADDRESS;
+const screen = {};
+
+app.use(cors('*'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const wss = new WebSocketServer.Server({ 
+  port: 8081, 
+  host: address
+})
+
+wss.on("connection",(socket, req) => {
+  console.log("Client Connected")
+  let id = 0;
+  while (true) {
+    if (!screen.hasOwnProperty(id)) { screen[id] = socket; break; }
+     id++;
+  }
+
+  socket.on("close", () => delete screen[id]);
+
+  socket.on("message", msg => {
+  let message = msg.toString();
+  console.log(message)
+      for (let s in screen) {
+          screen[s].send(message);   
+              }
+         });
+ 
+});
+
 
 app.get('/', (req, res) => {
   res.send('Server is running!');
@@ -32,6 +68,6 @@ app.post('/button2', (req, res) => {
     console.log('Button4 pressed!')
   });
 
-http.listen(3000, () => {
+app.listen(3000, () => {
   console.log('Server is listening on port 3000');
 });
