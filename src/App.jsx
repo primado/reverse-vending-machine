@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:3000');
 
 
 //images
@@ -12,8 +15,15 @@ import './css/index.css'
 
 
 function App() {
-   
+  const [counter, setCounter] = useState(0);
 
+  useEffect(() => {
+    socket.on('button1', () => {
+      setCounter(counter + 1);
+    });
+  }, [counter]);
+   
+console.log(counter);
   return (
     <div className="app">
       
@@ -30,7 +40,7 @@ function App() {
           <div className="main-col__lt">
             <div className='main-col__top'>
               <div className="text-desc">
-                Total Bottle: 12
+                Total Bottle: {counter}
               </div>
 
               <div className='btn'>
