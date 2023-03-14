@@ -10,6 +10,7 @@ dotenv.config();
 
 const address = process.env.IP_ADDRESS;
 const screen = {};
+const screen1 = {};
 
 app.use(cors('*'));
 app.use(bodyParser.json());
@@ -20,8 +21,32 @@ const wss = new WebSocketServer.Server({
   host: address
 })
 
+const wss1 = new WebSocketServer.Server({ 
+  port: 8082, 
+  host: address
+})
+
 wss.on("connection",(socket, req) => {
   console.log("Client Connected")
+  let id = 0;
+  while (true) {
+    if (!screen.hasOwnProperty(id)) { screen[id] = socket; break; }
+     id++;
+  }
+
+  socket.on("close", () => delete screen[id]);
+
+  socket.on("message", msg => {
+  let message = msg.toString();
+  console.log(message)
+      for (let s in screen) {
+          screen[s].send(message);   
+              }
+         });
+});
+
+wss1.on("connection",(socket, req) => {
+  console.log("Socket2 UP")
   let id = 0;
   while (true) {
     if (!screen.hasOwnProperty(id)) { screen[id] = socket; break; }

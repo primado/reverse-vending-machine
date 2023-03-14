@@ -8,16 +8,16 @@ import Modal from "react-modal";
 
 
 var address = import.meta.env.IP_ADDRESS;
-var feedback ="";
+var feedback;
 var metal;
 var pet;
-var status = "";
+var status,state = "",message;
 var metal_total=0,pet_total= 0, total_items = 0;
 var metal_total_price=0,pet_total_price= 0, total_price = 0;
 
 
 const WS_URL = 'ws://192.168.1.101:8081';
-
+const WS_URL1 = 'ws://192.168.1.101:8082';
 
 //images
 import bottl_1 from './assets/can-bottle.png'
@@ -34,6 +34,8 @@ function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [socket, setSocket] = useState(null);
+
 
   function handleNumberClick(number) {
     setInputValue(inputValue + number);
@@ -51,10 +53,19 @@ function App() {
     setPhoneNumber(event.target.value);
   }
 
+  function Finish(){
+    socket.send("finish");
+
+  }
+
   function handleSavePhoneNumber() {
     console.log(inputValue);
-    alert(inputValue);
+    // alert(inputValue);
     setModalIsOpen(false);
+    message = "INITIALIZING SYSTEM .... PLEASE WAIT!";
+    //connect to websocket
+    socket.send("start");
+
     setInputValue("");
   }
    useWebSocket(WS_URL, {
@@ -67,28 +78,65 @@ function App() {
       console.log(data);
           feedback = data['feedback'];
           metal = data['metal'];
-          pet = data['pet']
-          status = data['status']
+          pet = data['pet'];
+          status = data['status'];
+          state = data['state'];
 
-          if(status === "active"){
+
+          if(status === "active" && state === "good" ){
               if(metal > 0 && pet === 0){
+                message = feedback;
                 metal_total =  metal_total + 1;
                 metal_total_price = metal_total_price + 0.25;
               }
               if(pet > 0 && metal === 0){
+                message = feedback;
                 pet_total =  pet_total + 1;
                 pet_total_price = pet_total_price + 0.2
+              }
+
+              if(metal === 0 && pet === 0){
+                message = "START INSERTING BOTTLES";
               }
               
               total_items = pet_total + metal_total;
               total_price = pet_total_price + metal_total_price;
         }
 
+        if(status === "inactive" && state === "good" ){
+          message = feedback;
+        }
+
+
+        
+
       
     },
     shouldReconnect: (closeEvent) => true,
   });
 
+  useEffect(() => {
+ 
+    const ws = new WebSocket(WS_URL1);
+    setSocket(ws);
+
+    ws.onopen = () => {
+      console.log("WebSocket connection established");
+
+    }; 
+
+    ws.onmessage = (event) => {
+      console.log(`Received data: ${event.data}`);
+    };
+
+    ws.onerror = (error) => {
+      console.error(`WebSocket error: ${error}`);
+    };
+    
+    return () => {
+      
+     };
+  }, []);
    
    return (
     <div className="app">
@@ -97,7 +145,7 @@ function App() {
 
         <div className='header-center'>
           <div className="header">
-            <h1>{feedback}</h1>
+            <h1>{message}</h1>
 
           </div>
         </div>
@@ -138,7 +186,7 @@ function App() {
                           </div>
                           <div>
                             <button className='btn_primary_2' onClick={() => handleClearClick()}>Clear</button>
-                            <button className='btn_primary_2' onClick={() => handleNumberClick("0")}>0</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("0")}>0</button>
                             <button className='btn_primary_2A btn-danger' onClick={() => handleBackspaceClick()}>Delete</button>
                           </div>
                         </div>
@@ -182,7 +230,7 @@ function App() {
                
 
                 <div className="btn">
-                  <button className='btn-primary' type='submit'>
+                  <button className='btn-primary' type='submit' onClick={() => Finish()}>
                     Finish
                   </button>
                 </div>
