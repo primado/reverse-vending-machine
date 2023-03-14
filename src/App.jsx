@@ -52,9 +52,10 @@ function App() {
   }
 
   function handleSavePhoneNumber() {
-    console.log(phoneNumber);
-    alert(phoneNumber);
+    console.log(inputValue);
+    alert(inputValue);
     setModalIsOpen(false);
+    setInputValue("");
   }
    useWebSocket(WS_URL, {
 
@@ -143,8 +144,9 @@ function App() {
                         </div>
 
                       <div className='btn-container'>
-                        <button className='btn-save' onClick={handleSavePhoneNumber}>Save</button>
+                         <button className='btn-save' onClick={handleSavePhoneNumber}>Save</button>
                         <button className='btn-cancel' onClick={() => setModalIsOpen(false)}>Cancel</button>
+
                       </div>
                     </div>
                   </Modal>
