@@ -117,7 +117,7 @@ function App() {
                     <button onClick={handleSavePhoneNumber}>Save</button>
                     <button onClick={() => setModalIsOpen(false)}>Cancel</button>
 
-                      <div>
+                    <div>
                         <input type="text" value={inputValue} onChange={handlePhoneNumberChange}   />
                         <div>
                           <button onClick={() => handleNumberClick("1")}>1</button>
@@ -139,7 +139,7 @@ function App() {
                           <button onClick={() => handleNumberClick("0")}>0</button>
                           <button onClick={() => handleBackspaceClick()}>Delete</button>
                         </div>
-                      </div>
+                   </div>
                   </div>
                 </Modal>
                         

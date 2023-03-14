@@ -1,0 +1,28 @@
+.number-pad {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .number-pad button {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #eee;
+    color: #333;
+  }
+  
+  .number-pad button:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
