@@ -20,8 +20,8 @@ const WS_URL = 'ws://192.168.1.101:8081';
 
 
 //images
-import bottl_1 from './assets/bottle-1.png'
-import bottl_2 from './assets/bottle-2.png'
+import bottl_1 from './assets/can-bottle.png'
+import bottl_2 from './assets/pet_bottle.png'
 import cedi from './assets/cedi-1.png'
 import logo from './assets/afrilogic.png'
 
@@ -117,29 +117,29 @@ function App() {
                     <button onClick={handleSavePhoneNumber}>Save</button>
                     <button onClick={() => setModalIsOpen(false)}>Cancel</button>
 
-                    <div>
-      <input type="text" value={inputValue} onChange={handlePhoneNumberChange}   />
-      <div>
-        <button onClick={() => handleNumberClick("1")}>1</button>
-        <button onClick={() => handleNumberClick("2")}>2</button>
-        <button onClick={() => handleNumberClick("3")}>3</button>
-      </div>
-      <div>
-        <button onClick={() => handleNumberClick("4")}>4</button>
-        <button onClick={() => handleNumberClick("5")}>5</button>
-        <button onClick={() => handleNumberClick("6")}>6</button>
-      </div>
-      <div>
-        <button onClick={() => handleNumberClick("7")}>7</button>
-        <button onClick={() => handleNumberClick("8")}>8</button>
-        <button onClick={() => handleNumberClick("9")}>9</button>
-      </div>
-      <div>
-        <button onClick={() => handleClearClick()}>Clear</button>
-        <button onClick={() => handleNumberClick("0")}>0</button>
-        <button onClick={() => handleBackspaceClick()}>Delete</button>
-      </div>
-    </div>
+                      <div>
+                        <input type="text" value={inputValue} onChange={handlePhoneNumberChange}   />
+                        <div>
+                          <button onClick={() => handleNumberClick("1")}>1</button>
+                          <button onClick={() => handleNumberClick("2")}>2</button>
+                          <button onClick={() => handleNumberClick("3")}>3</button>
+                        </div>
+                        <div>
+                          <button onClick={() => handleNumberClick("4")}>4</button>
+                          <button onClick={() => handleNumberClick("5")}>5</button>
+                          <button onClick={() => handleNumberClick("6")}>6</button>
+                        </div>
+                        <div>
+                          <button onClick={() => handleNumberClick("7")}>7</button>
+                          <button onClick={() => handleNumberClick("8")}>8</button>
+                          <button onClick={() => handleNumberClick("9")}>9</button>
+                        </div>
+                        <div>
+                          <button onClick={() => handleClearClick()}>Clear</button>
+                          <button onClick={() => handleNumberClick("0")}>0</button>
+                          <button onClick={() => handleBackspaceClick()}>Delete</button>
+                        </div>
+                      </div>
                   </div>
                 </Modal>
                         
@@ -149,12 +149,12 @@ function App() {
             <div className="middle">
               <div className="middle__lt">
                 <div className='item-1'>
-                  <img src={bottl_1} alt="item 1" />
+                  <img className='can__bottle' src={bottl_1} alt="item 1" />
                   <span>{metal_total}</span>
                 </div>
 
                 <div className="item-2">
-                  <img src={bottl_2} alt="item 2" />
+                  <img className='pet__bottle' src={bottl_2} alt="item 2" />
                   <span>{pet_total}</span>
                 </div>
 

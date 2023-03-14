@@ -10,7 +10,7 @@ $padding: 5em;
 
 
 body {
-    background-color: rgb(231, 42, 42);
+    background-color: #E1E6E1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,7 +32,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0em;
+    // margin-top: 0em;
     margin-top: 2em;
 }
 
@@ -44,7 +44,7 @@ body {
     justify-content: center;
     align-items: center;
     color: #fff;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     border-radius: .5em;
     
 }
@@ -110,7 +110,7 @@ body {
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     flex-direction: row;
     // border: #000 solid 1px;
 }
@@ -122,6 +122,14 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.item-1 .can__bottle {
+    width: 10rem
+  }
+  
+  .item-2 .pet__bottle {
+    width: 10rem
 }
 
 .middle__rt {
@@ -178,4 +186,24 @@ body {
     align-items: center;
     flex-direction: column;
     margin-bottom: 1em;
+}
+
+
+
+// Media Queries 800 x 480
+
+@media screen and (max-width: 800px) {
+
+    body {
+        margin: 0;
+    }
+
+    .container {
+        width: 100vw;
+        height: 100%;
+    }
+
+    .item-2 .pet__bottle {
+        height: 12rem;
+    }
 }
