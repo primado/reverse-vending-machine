@@ -108,40 +108,48 @@ function App() {
                 Total Bottle: {total_items}
               </div>
 
-              <div className='btn'>
+              <div className=''>
                 <button className='btn-primary' type='submit' onClick={() => setModalIsOpen(true)}>Start</button>
-                <Modal isOpen={modalIsOpen}>
-                  <div>
-                    <h2>Enter Your Phone Number</h2>
-                    <input type="number" value={inputValue} onChange={handlePhoneNumberChange} />
-                    <button onClick={handleSavePhoneNumber}>Save</button>
-                    <button onClick={() => setModalIsOpen(false)}>Cancel</button>
 
-                    <div>
-                        <input type="text" value={inputValue} onChange={handlePhoneNumberChange}   />
-                        <div>
-                          <button onClick={() => handleNumberClick("1")}>1</button>
-                          <button onClick={() => handleNumberClick("2")}>2</button>
-                          <button onClick={() => handleNumberClick("3")}>3</button>
+                <div className="">
+                  <Modal isOpen={modalIsOpen}>
+                    <div className='modal_center'>
+                      <h2 className='phone_no_label'>Enter Your Phone Number</h2>
+                      <input className='text__input_1' type="number" value={inputValue} onChange={handlePhoneNumberChange} />
+                      
+
+                       <div className='numbers-container'>
+                          {/* <input className='text__input_1' type="text" value={inputValue} onChange={handlePhoneNumberChange}   /> */}
+                          <div className='btn-num-group'>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("1")}>1</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("2")}>2</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("3")}>3</button>
+                          </div>
+                          <div className='btn-num-group'>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("4")}>4</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("5")}>5</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("6")}>6</button>
+                          </div>
+                          <div className='container_3 btn-num-group'>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("7")}>7</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("8")}>8</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("9")}>9</button>
+                          </div>
+                          <div>
+                            <button className='btn_primary_2' onClick={() => handleClearClick()}>Clear</button>
+                            <button className='btn_primary_2' onClick={() => handleNumberClick("0")}>0</button>
+                            <button className='btn_primary_2A btn-danger' onClick={() => handleBackspaceClick()}>Delete</button>
+                          </div>
                         </div>
-                        <div>
-                          <button onClick={() => handleNumberClick("4")}>4</button>
-                          <button onClick={() => handleNumberClick("5")}>5</button>
-                          <button onClick={() => handleNumberClick("6")}>6</button>
-                        </div>
-                        <div>
-                          <button onClick={() => handleNumberClick("7")}>7</button>
-                          <button onClick={() => handleNumberClick("8")}>8</button>
-                          <button onClick={() => handleNumberClick("9")}>9</button>
-                        </div>
-                        <div>
-                          <button onClick={() => handleClearClick()}>Clear</button>
-                          <button onClick={() => handleNumberClick("0")}>0</button>
-                          <button onClick={() => handleBackspaceClick()}>Delete</button>
-                        </div>
-                   </div>
-                  </div>
-                </Modal>
+
+                      <div className='btn-container'>
+                        <button className='btn-save' onClick={handleSavePhoneNumber}>Save</button>
+                        <button className='btn-cancel' onClick={() => setModalIsOpen(false)}>Cancel</button>
+                      </div>
+                    </div>
+                  </Modal>
+
+                </div>
                         
               </div>
             </div>
