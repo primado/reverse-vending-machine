@@ -10,7 +10,7 @@ $padding: 5em;
 
 
 body {
-    background-color: rgb(231, 42, 42);
+    background-color: #E1E6E1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,7 +32,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0em;
+    // margin-top: 0em;
     margin-top: 2em;
 }
 
@@ -44,7 +44,7 @@ body {
     justify-content: center;
     align-items: center;
     color: #fff;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     border-radius: .5em;
     
 }
@@ -110,7 +110,7 @@ body {
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     flex-direction: row;
     // border: #000 solid 1px;
 }
@@ -122,6 +122,14 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.item-1 .can__bottle {
+    width: 10rem
+  }
+  
+  .item-2 .pet__bottle {
+    width: 10rem
 }
 
 .middle__rt {
@@ -170,7 +178,6 @@ body {
     width: 1em;
 }
 
-
 .logo {
     width: 100%;
     display: flex;
@@ -178,4 +185,199 @@ body {
     align-items: center;
     flex-direction: column;
     margin-bottom: 1em;
+}
+
+.text__input_1 {
+    width: 50%;
+    height: 50px;
+    background-color: #E1E6E1;
+    border: none;
+    border-radius: .5em;
+    padding: 0 1em;
+    margin-bottom: 1em;
+    border: 1px solid #000;
+    // margin-right: 2rem;
+    max-width: 50%;
+    
+}
+
+.text__input_1:focus {
+    outline: none;
+    border: 2px solid #0CAADC;
+}
+
+.btn_primary_2 {
+    width: 80px;
+    height: 40px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: .5em;
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-right: .5em;
+}
+
+.btn_primary_2:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: all 0.09s ease-in-out;
+}
+
+ .btn_primary_2:active {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: all 0.09s ease-in-out;
+}
+
+.btn_primary_3 {
+    width: 80px;
+    height: 40px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: .5em;
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-left: .5em;
+}
+
+.container_3 {
+    margin-bottom: .7em;
+} 
+
+.btn_primary_3:focus {
+    outline: none;
+    background-color: #0CAADC;
+    color: #000;
+    font-size: 1em;
+}
+
+
+.btn_primary_2A {
+    width: 80px;
+    height: 40px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: .5em;
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-right: .5em;
+}
+
+.btn_primary_2A:hover {
+    background-color: #FF0000 !important;
+    transition: all 0.09s ease-in-out;
+    
+}
+
+.phone_no_label {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    margin-bottom: 1em;
+}
+
+.numbers-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.btn-container {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 1em;
+    margin-top: 2em;
+}
+
+
+.btn-save {
+    width: 80px;
+    height: 45px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: .5em;
+    font-size: 1.2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 1em;
+    margin-right: .5em;
+}
+
+.btn-save:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: all 0.09s ease-in-out;
+}
+
+
+
+.btn-cancel {
+    width: 90px;
+    height: 45px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: .5em;
+    font-size: 1.2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 1em;
+    border: 2px solid #000;
+}
+
+.btn-cancel:hover {
+    background-color: #0CAADC;
+    color: #fff;
+    border: #fff;
+    transition: all 0.09s ease-in-out;
+    
+}
+
+.modal_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+
+// Media Queries 800 x 480
+
+@media screen and (max-width: 800px) {
+
+    body {
+        margin: 0;
+    }
+
+    .container {
+        width: 100vw;
+        height: 100%;
+    }
+
+    .item-2 .pet__bottle {
+        height: 12rem;
+    }
 }

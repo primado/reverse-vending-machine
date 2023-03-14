@@ -3,9 +3,6 @@ import io from 'socket.io-client';
 import useWebSocket from 'react-use-websocket';
 import 'reactjs-popup/dist/index.css';
 import Modal from "react-modal";
-import NumberPad from "./numberpad.jsx"
-import "./pad.css"
-
 
 
 
@@ -23,8 +20,8 @@ const WS_URL = 'ws://192.168.1.101:8081';
 
 
 //images
-import bottl_1 from './assets/bottle-1.png'
-import bottl_2 from './assets/bottle-2.png'
+import bottl_1 from './assets/can-bottle.png'
+import bottl_2 from './assets/pet_bottle.png'
 import cedi from './assets/cedi-1.png'
 import logo from './assets/afrilogic.png'
 
@@ -38,8 +35,20 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
-  function handleNumberButtonClick(value) {
-    setPhoneNumber(value);
+  function handleNumberClick(number) {
+    setInputValue(inputValue + number);
+  }
+
+  function handleBackspaceClick() {
+    setInputValue(inputValue.slice(0, -1));
+  }
+
+  function handleClearClick() {
+    setInputValue("");
+  }
+
+  function handlePhoneNumberChange(event) {
+    setPhoneNumber(event.target.value);
   }
 
   function handleSavePhoneNumber() {
@@ -99,24 +108,48 @@ function App() {
                 Total Bottle: {total_items}
               </div>
 
-              <div className='btn'>
+              <div className=''>
                 <button className='btn-primary' type='submit' onClick={() => setModalIsOpen(true)}>Start</button>
-                <Modal isOpen={modalIsOpen}>
-                  <div>
-                     
 
-                    <NumberPad
-                      onNumberButtonClick={handleNumberButtonClick}
-                      phoneNumber={phoneNumber}
-                        />
-                    
-                    <button onClick={handleSavePhoneNumber}>Save</button>
+                <div className="">
+                  <Modal isOpen={modalIsOpen}>
+                    <div className='modal_center'>
+                      <h2 className='phone_no_label'>Enter Your Phone Number</h2>
+                      <input className='text__input_1' type="number" value={inputValue} onChange={handlePhoneNumberChange} />
+                      
 
-                    <button onClick={() => setModalIsOpen(false)}>Cancel</button>
+                       <div className='numbers-container'>
+                          {/* <input className='text__input_1' type="text" value={inputValue} onChange={handlePhoneNumberChange}   /> */}
+                          <div className='btn-num-group'>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("1")}>1</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("2")}>2</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("3")}>3</button>
+                          </div>
+                          <div className='btn-num-group'>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("4")}>4</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("5")}>5</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("6")}>6</button>
+                          </div>
+                          <div className='container_3 btn-num-group'>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("7")}>7</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("8")}>8</button>
+                            <button className='btn_primary_3' onClick={() => handleNumberClick("9")}>9</button>
+                          </div>
+                          <div>
+                            <button className='btn_primary_2' onClick={() => handleClearClick()}>Clear</button>
+                            <button className='btn_primary_2' onClick={() => handleNumberClick("0")}>0</button>
+                            <button className='btn_primary_2A btn-danger' onClick={() => handleBackspaceClick()}>Delete</button>
+                          </div>
+                        </div>
 
- 
-                   </div>
-                </Modal>
+                      <div className='btn-container'>
+                        <button className='btn-save' onClick={handleSavePhoneNumber}>Save</button>
+                        <button className='btn-cancel' onClick={() => setModalIsOpen(false)}>Cancel</button>
+                      </div>
+                    </div>
+                  </Modal>
+
+                </div>
                         
               </div>
             </div>
@@ -124,12 +157,12 @@ function App() {
             <div className="middle">
               <div className="middle__lt">
                 <div className='item-1'>
-                  <img src={bottl_1} alt="item 1" />
+                  <img className='can__bottle' src={bottl_1} alt="item 1" />
                   <span>{metal_total}</span>
                 </div>
 
                 <div className="item-2">
-                  <img src={bottl_2} alt="item 2" />
+                  <img className='pet__bottle' src={bottl_2} alt="item 2" />
                   <span>{pet_total}</span>
                 </div>
 
