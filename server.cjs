@@ -39,7 +39,6 @@ wss.on("connection",(socket, req) => {
          });
 });
 
-
 app.get('/', (req, res) => {
   res.send('Server is running!');
 });
